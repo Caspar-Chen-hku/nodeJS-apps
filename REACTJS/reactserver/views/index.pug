@@ -1,0 +1,36 @@
+extends layout
+
+block content
+    h1= title
+
+    // COMMODITY LIST
+    h2 Commodity List
+    #commodityList            
+    // /COMMODITY LIST
+
+    // ADD COMMODITY
+    br
+    br
+    h2 Add Commodity
+    #addcommodity
+        fieldset
+            input#inputName(type='text', placeholder='Name')
+            br
+            select(id="inputCategory")
+                option(value='0') -- Category --
+                option(value='Computer') Computer
+                option(value='Phone') Phone
+                option(value='Tablet') Tablet
+                option(value='Watch') Watch
+            br
+            select(id="inputStatus")
+                option(value='0') -- Status --
+                option(value='in stock') in stock
+                option(value='out of stock') out of stock
+            br
+            br
+            button(type='button',id='btnAddcommodity',class='myButton') Add Commodity
+    // /ADD COMMODITY
+
+
+

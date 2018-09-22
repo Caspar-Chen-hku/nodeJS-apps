@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Lab 7</title>
+	<link rel="stylesheet" href="/stylesheets/style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script> 
+	<script src="/javascripts/externalJS.js"></script>
+</head>
+<body ng-app="commodityListApp" ng-controller="commodityListController" ng-init="getCommodities()" >
+	<h1>Lab 7</h1>
+	
+	<h2>Commodity List</h2>	
+	<table id="commodityList"> 
+		<tr>
+			<th>Category</th><th>Name</th><th>Status</th><th>Delete?</th>
+		</tr>
+		<tr ng-repeat='commodity in commodities'>  
+			<td>{{commodity.category}}</td>  
+			<td>{{commodity.name}}</td>  
+			<td id={{'status_'+commodity._id}}>
+				<span ng-hide="updateStatusOrNot[commodity._id]">{{commodity.status}}<button class="myButton" ng-click="showStatusOptions(commodity._id)">update</button></span>
+				<span ng-show="updateStatusOrNot[commodity._id]"><select ng-model="new_status[commodity._id]"><option value="">-- Status --</option><option value="in stock">in stock</option><option value="out of stock">out of stock</option></select><button class="myButton" ng-click="updateCommodity(commodity._id)"> update</button></span>
+			</td>  
+			<td><button class="myButton" ng-click='deleteCommodity(commodity._id)'> delete</button></td> 
+		</tr> 
+ 
+	
+	</table>
+	<br>
+	<br>
+	
+	<h2>Add Commodity</h2>
+	<div id="addcommodity">
+			<input type="text" placeholder="Name" ng-model="new_commodity.name">
+			<br>
+			<select ng-model="new_commodity.category" >
+				<option value="">-- Category --</option>
+				<option value="Computer">Computer</option>
+				<option value="Phone">Phone</option>
+				<option value="Tablet">Tablet</option>
+				<option value="Watch">Watch</option>
+			</select>
+			<br>
+			<select ng-model="new_commodity.status">
+				<option value="">-- Status --</option>
+				<option value="in stock">in stock</option>
+				<option value="out of stock">out of stock</option>
+			</select>
+			<br>
+			<br>
+			<button class="myButton" ng-click="addNewCommodity()" >Add Commodity</button>
+	</div>
+
+</body>
+</html>
